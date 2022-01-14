@@ -1,0 +1,13 @@
+# The overall study with a globally unique study_id
+Study:
+    discriminator:
+        propertyName: AIRR
+    type: object
+    required:
+        - study_id
+        - study_title
+        - study_type
+        - inclusion_exclusion_criteria
+        - grants
+        - collected_by
+        - lab_name
