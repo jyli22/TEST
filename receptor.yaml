@@ -4,6 +4,127 @@ Receptor:
     discriminator: AIRR
     type: object
     required:
+        - receptor_variable_domain_1_aa
+        - receptor_variable_domain_2_aa
+    properties:
+        receptor_hash_id:
+            type: string
+            description: >
+                A unique identifier of the receptor, calculated as sha256(concat(receptor_chain_1,receptor_chain_2),
+                represented as base16 encoded string.
+            title: Receptor Hash Identifier
+            example: ad6086cc22694c03ec0b9e85477958cd2581b2c06543ed4d89a41a82ab8a60e0
+            x-airr:
+                miairr: defined
+                nullable: false
+                adc-query-support: true
+                name: Receptor Hash ID
+        receptor_variable_domain_1_aa:
+            type: string
+            description: >
+                Complete amino acid sequence of the mature variable domain of the Ig heavy, TCR beta or TCR delta chain.
+                The mature variable domain is defined as encompassing all AA from and including first AA after the the
+                signal peptide to and including the last AA that is completely encoded by the J gene.
+            example: >
+                QVQLQQPGAELVKPGASVKLSCKASGYTFTSYWMHWVKQRPGRGLEWIGRIDPNSGGTKYNEKFKSKATLTVDKPSSTAYMQLSSLTSEDSAVYYCARYDYYGSSYFDYWGQGTTLTVSS
+            x-airr:
+                miairr: defined
+                nullable: false
+                adc-api-optional: true
+        receptor_variable_domain_2_aa:
+            type: string
+            description: >
+                Complete amino acid sequence of the mature variable domain of the Ig light, TCR alpha or TCR gamma chain.
+                The mature variable domain is defined as encompassing all AA from and including first AA after the the
+                signal peptide to and including the last AA that is completely encoded by the J gene.
+            example: >
+                QAVVTQESALTTSPGETVTLTCRSSTGAVTTSNYANWVQEKPDHLFTGLIGGTNNRAPGVPARFSGSLIGDKAALTITGAQTEDEAIYFCALWYSNHWVFGGGTKLTVL
+            x-airr:
+                miairr: defined
+                nullable: true
+                adc-api-optional: true
+        receptor_type:
+            type: string
+            enum:
+                - Immunoglobulin
+                - TCR
+            description: presenting the receptor type
+            x-airr:
+                miairr: defined
+                nullable: false
+                adc-api-optional: true
+        receptor_variable_domain_1_locus:
+            type: string
+            enum:
+                - IGH
+                - TRB
+            description: Locus from which the variable domain originates (chain type)
+            x-airr:
+                miairr: defined
+                nullable: false
+                adc-api-optional: true
+        receptor_variable_domain_2_locus:
+            type: string
+            enum:
+                - IGK
+                - IGL
+                - TRA
+            description: Locus from which the variable domain originates (chain tye)
+            x-airr:
+                miairr: defined
+                nullable: true
+                adc-api-optional: true
+        reactivity_measurements:
+            type: array
+            description: Records of reactivity measurement
+            items:
+                type: object
+                properties:
+                    ligand_type:
+                        type: string
+                        enum:
+                            - MHC:peptide
+                            - peptide
+                        description: >
+                           Structure of ligand binding to receptor. For TCRs this is the combination of MHC and peptide.
+                    antigen:
+                        type: string
+                        description: >
+                           The amino acid sequences of peptide against which the receptor was tested.
+                        example: PSDKHIKEYLNKIQN
+                    reactivity_study_method:
+                        type: string
+                        enum:
+                            - SPR
+                            - ELISA
+                            - biological activity
+                        description: >
+                           The methodology used to assess expression (assay implemented in experiment)
+                    reactivity_item:
+                        type: string
+                        enum:
+                            - IL-2 release
+                            - binding strength
+                            - dissociation constant KD
+                            - on rate
+                            - off rate
+                            - pf traversal inhibition
+                        description: The items calculated in measurement
+                        example: IL-2 release
+                    reactivity_value:
+                        type: float
+                        description: The absolute (processed) value of the measurement
+                        example: 162.26
+                    reactivity_unit:
+                        type: string
+                        description: The physical unit of the measurement
+                        example: pg/ml or M
+# The Receptor object hold information about a receptor and its reactivity.
+#
+Receptor:
+    discriminator: AIRR
+    type: object
+    required:
         - receptor_chain_1_aa
         - receptor_chain_2_aa
     properties:
