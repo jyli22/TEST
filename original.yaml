@@ -4,8 +4,8 @@ Receptor:
     discriminator: AIRR
     type: object
     required:
-        - receptor_chain_1_aa
-        - receptor_chain_2_aa
+        - receptor_variable_domain_1_aa
+        - receptor_variable_domain_2_aa
     properties:
         receptor_hash_id:
             type: string
@@ -92,10 +92,6 @@ Receptor:
                         description: >
                            The amino acid sequences of peptide against which the receptor was tested.
                         example: PSDKHIKEYLNKIQN
-                    MHC_molecule:
-                        type: string
-                        description: MHC molecule combined with peptide (only for TCRs)
-                        example: HLA-DQ
                     reactivity_study_method:
                         type: string
                         enum:
