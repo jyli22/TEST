@@ -109,7 +109,7 @@ supported in the ``Receptor`` schema.
 
 
 Reactivity Measurement Fields
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------
 
 A ``reactivity_measurement`` array records the experimental design and result for what a researcher measured 
 or observed for the reactivity of target ``Receptor``. Specifically, a receptor may have multiple reactivity 
